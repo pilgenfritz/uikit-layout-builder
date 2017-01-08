@@ -1,0 +1,17 @@
+#php_flag magic_quotes_gpc On
+
+RewriteEngine On
+
+#rewritecond %{http_host} ^cliente.com.br [NC]
+#rewriterule ^(.*)$ http://www.cliente.com.br/$1 [r=301,NC]
+
+RewriteRule ^cms\/?$													/_base/cms/index.php [R]
+RewriteRule ^([A-za-z-0-9]+)?\/?$										/_base/index.php?p=$1
+RewriteRule ^([A-za-z-0-9]+)?\/cat\/?([0-9]+)*\/?([A-za-z-0-9]+)?\/?$		/_base/index.php?p=$1&cid=$2
+RewriteRule ^([A-za-z-0-9]+)?\/?([0-9]+)*\/?$							/_base/index.php?p=$1&id=$2
+RewriteRule blog\/?([0-9]+)*\/?([A-za-z-0-9]+)*\/?$						/_base/index.php?p=blog&id=$1&pg=$2
+RewriteRule ^([A-za-z-0-9]+)?\/?([0-9]+)*\/?([0-9]+)*\/?$				/_base/index.php?p=$1&id=$2&pg=$3
+RewriteRule ^([A-za-z-0-9]+)?\/?([0-9]+)*\/?([A-za-z-0-9]+)*\/?$		/_base/index.php?p=$1&id=$2&pg=$3
+RewriteRule ^([A-za-z-0-9]+)?\/?([A-za-z-0-9]+)*\/?$					/_base/index.php?p=$1&args[]=$2
+# 404
+ErrorDocument 404 /404

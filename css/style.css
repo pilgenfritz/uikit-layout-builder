@@ -1,0 +1,62 @@
+@import url("base.css");
+
+/* Slider */
+.lente{ position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: #000;opacity: 0.2;z-index: 1; }
+
+/* Navbar */
+nav.navbar, ul.navbar-nav li a, .navbar-brand { height: 80px; line-height: 80px; padding-top: 0; padding-bottom: 0; }
+.navbar-brand img { max-height: 90%; margin-top: 5px; }
+
+/* page-header */
+.page-header { height: 200px; background: rgba(138, 109, 59, 0.21); border: 0; margin: 80px 0 0 0; padding-top: 50px; }
+.page-header h1 {  }
+
+/* Loader */
+body.loading{overflow: hidden;}
+#loader{position: absolute;width: 100%;height: 100%;background: #FFF;z-index: 999999;}
+#loader img{display: block;position: absolute;left: 0;right: 0;margin: 0 auto;}
+#loader img.loader-logo{top: 150px;animation: animationLoader linear 1.5s;animation-iteration-count: infinite;-webkit-animation: animationLoader linear 1.5s;-webkit-animation-iteration-count: infinite;-moz-animation: animationLoader linear 1.5s;-moz-animation-iteration-count: infinite;-o-animation: animationLoader linear 1.5s;-o-animation-iteration-count: infinite;-ms-animation: animationLoader linear 1.5s;-ms-animation-iteration-count: infinite; max-width: 70%;}
+#loader img.loader-gif{bottom: 10vh;}
+@keyframes animationLoader{0%{opacity: 0.5}50%{opacity:1}100%{opacity:0.5}}
+@-moz-keyframes animationLoader{0%{opacity: 0.5}50%{opacity: 1}100%{opacity: 0.5}}
+@-webkit-keyframes animationLoader{0%{opacity: 0.5}50%{opacity: 1}100%{opacity: 0.5}}
+@-o-keyframes animationLoader{0%{opacity: 0.5}50%{opacity: 1}100%{opacity: 0.5}}
+@-ms-keyframes animationLoader{0%{opacity: 0.5}50%{opacity: 1}100%{opacity: 0.5}}
+
+/* Social */
+ul.social li { display: inline-block; }
+ul.social li .fa { color: #FFF; font-size: 1em; margin-right: 10px; }
+
+/* Footer */
+footer { position: relative; overflow: hidden; }
+footer section#copy { padding: 10px; background: #1f1f1f; }
+footer section#copy p { font-size: 14px; color: #fff; }
+footer div#map-canvas { height: 300px; margin-top: 30px; }
+
+/* Smartphones Only */
+@media only screen and (min-width: 40.063em){
+
+}
+
+/* Smartphones and Tablets */
+@media only screen and (max-width: 64em){
+    /* Carousel navigation */
+    .owl-nav { position: relative; margin-top: 40px; text-align: center; }
+    .owl-prev, .owl-next { display: inline-block; margin: 0px 20px; }
+}
+
+/* Tablet Only */
+@media only screen and (min-width: 40.063em) and (max-width: 64em){
+    html{ font-size: 16px; }
+}
+
+/* Desktop */
+@media only screen and (min-width: 64.063em){
+    .ccount2 { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; -webkit-column-gap: 50px; -moz-column-gap: 50px; column-gap: 50px; }
+    .ccount3 { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; -webkit-column-gap: 30px; -moz-column-gap: 30px; column-gap: 30px; }
+
+    /* Carousel navigation */
+    .owl-prev i, .owl-next i { position: absolute; top: 0; bottom: 0; margin: auto 0; height: 60px; }
+    .owl-prev i { left: -30px; }
+    .owl-next i { right: -30px; }
+}

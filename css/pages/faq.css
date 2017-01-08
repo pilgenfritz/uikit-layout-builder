@@ -1,0 +1,9 @@
+.pergunta h2 { cursor: pointer; }
+.pergunta p { display: none; }
+
+@media only screen and (max-width: 64em){
+    
+}
+@media only screen and (max-width: 40em){
+    
+}

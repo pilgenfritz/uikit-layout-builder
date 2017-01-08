@@ -1,0 +1,149 @@
+section#judice{
+	background: #e8e5d8;
+}
+/*section#judice .wrap-item{
+	position: relative;
+	color: #999;
+	padding-left: 10px;
+	margin-left: 15px;
+	font-size: 15px;
+}
+section#judice .wrap-item h3{
+	color: #FFF;
+	font-size: 20px;
+	line-height: 1.2;
+	opacity: 0.2;
+	transition: all .25s ease;
+}
+section#judice .wrap-item.clicked h3{
+	opacity: 1;
+}
+section#judice .wrap-item p{
+	color: #FFF;
+}
+section#judice .wrap-circle{
+	width: 300px;
+	height: 300px;
+	border: solid 1px #FFF;
+	border-radius: 100%; 
+	position: relative;
+}
+section#judice .wrap-circle .line-circle{
+	position: absolute;
+	top: 0;
+	left: 0;
+}*/
+
+
+
+
+.radial-nav {
+	width: 513px;
+	height: 513px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+.circle-line {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #000;
+    border-radius: 50%;
+    transition: transform .5s;
+}
+.item {
+	background: #fff;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+	text-align: center;
+	position: absolute;
+	transition: all .2s, transform .5s;
+}
+.item label {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	display: block;
+	padding: 0 16px;
+}
+.icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #333;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 50px;
+	opacity: 0;
+	transition: opacity 0.2s;
+	cursor: pointer;
+}
+.icon i {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	line-height: 1.2;
+}
+.item:hover .icon {
+	opacity: 1;
+}
+.item:nth-child(1) {
+	left: 106px;
+    top: -62px;
+}
+.item:nth-child(2) {
+	left: -53px;
+    top: 81px;
+}
+.item:nth-child(3) {
+	top: 288px;
+    left: -53px;
+}
+.item:nth-child(4) {
+	top: 429px;
+    left: 115px;
+}
+.item:nth-child(5) {
+	top: 387px;
+    left: 340px;
+}
+.item:nth-child(6) {
+	top: 176px;
+    left: 439px;
+}
+.item:nth-child(7) {
+	top: -27px;
+    left: 331px;
+}
+.item.active .icon {
+	opacity: 1;
+}
+/*.item.inactive {
+	width: 100px;
+	height: 100px;
+}*/
+/*.item.inactive:nth-child(1) {
+	top: -50px;
+	left: calc(50% - 50px);
+}
+.item.inactive:nth-child(2) {
+	top: calc(50% - 50px);
+	left: -50px;
+}
+.item.inactive:nth-child(3) {
+	bottom: -50px;
+	left: calc(50% - 50px);
+}
+.item.inactive:nth-child(4) {
+	top: calc(50% - 50px);
+	right: -50px;
+}*/
+
+

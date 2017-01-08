@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br" code="_layout.php,blog.html.php">
+<head>
+  <var name="page_title" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <var name="meta-tags" />
+  <var name="google-fonts" />
+  <var name="stylesheets" />
+  <var name="google-services" />
+  <var name="IEs" /> 
+</head>
+<body>
+  <!-- layout header -->
+  <var name="layout-header" />
+
+  <!-- document content -->
+  <section id="page-titulo">
+    <div class="row">
+      <div class="large-12 twelve columns">
+        <h1><var name="titulo_blog"></var></h1>
+      </div>
+    </div>
+  </section>
+  <section id="blog" class="main-section-page">
+    <div class="row">
+      <div class="large-10 ten columns centered large-centered" id="blog-scroll">
+        <div id="content">
+          <var name="ultima_news"></var>
+        </div>
+        <a id="next" href="blog">
+          <img src="img/scrol-img.png" alt="" style="position:absolute; left:50%;"/>
+        </a>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="large-2 two columns centered large-centered text-center">
+        
+      </div>
+    </div> -->
+  </section>
+
+
+  <!-- layout footer -->
+  <var name="layout-footer" />
+
+  <!-- javascript includes -->
+  <script src="js/foundation3/jquery.js"></script>    
+  <script src="js/plugins/infinite-scroll-master/test/debug.js"></script>
+  <script src="js/plugins/infinite-scroll-master/jquery.infinitescroll.js"></script>
+  <script src="js/plugins/infinite-scroll-master/behaviors/manual-trigger.js"></script>
+  
+  <!--[if lt IE 9]>
+    <script src="js/foundation3/foundation.min.js"></script>
+    <script src="js/foundation3/app.js"></script>
+    <script src="js/foundation3/jquery.foundation.orbit.js"></script>
+  <![endif]-->
+  <!-- Foundation 5 for IE 9 and later -->
+  <script src="js/foundation.min.js"></script>
+  <var name="site_javascripts" />
+  <var name="page_javascripts" />
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>
