@@ -18,26 +18,29 @@ $(document).ready(function()
 	});
 
 	$('.circle-line .item').on('click', function(){
-		var itemId = $(this).data('id'),
-			$parent = $(this).parent(),
+		var $parent = $(this).parent(),
 			rotatePlus = $(this).data('rotation-plus'),
 			rotateMinus = $(this).data('rotation-minus'),
 			currentRotation = $parent.rotationDegrees();
-
-			$(this).addClass('active')
 
 			if((Math.abs(currentRotation) - rotatePlus) < (Math.abs(currentRotation) - Math.abs(rotateMinus))){
 				rotationCircle = rotateMinus;
 			}else{
 				rotationCircle = rotatePlus;
 			}
+
+			fnRotationCircle($(this), $parent, rotationCircle)
 			
-			var tlCircle = new TimelineMax()
-			tlCircle
-				.to($parent, 1, {rotation: rotationCircle})
-				.to($parent.find('.item'), 0.1, {rotation: -rotationCircle}, 0)
 	})
 
+	function fnRotationCircle(target, parent, rotationCircle){
+		target.addClass('active clicked')
+		var tlCircle = new TimelineMax()
+			tlCircle
+				.to(parent, 1, {rotation: rotationCircle})
+				.to(parent.find('.item'), 0.1, {rotation: -rotationCircle, scale:0.5 }, 0)
+				.to(target, 0.5, {scale: 1}, 0)
+	}
 
 	/*var grid = UIkit.grid($('#grid'), {
 		gutter : 20,
