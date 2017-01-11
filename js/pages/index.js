@@ -30,6 +30,7 @@ $(document).ready(function()
 			}
 
 			fnRotationCircle($(this), $parent, rotationCircle)
+			changeTextCenter($(this))
 			
 	})
 
@@ -40,6 +41,16 @@ $(document).ready(function()
 				.to(parent, 1, {rotation: rotationCircle})
 				.to(parent.find('.item'), 0.1, {rotation: -rotationCircle, scale:0.5 }, 0)
 				.to(target, 0.5, {scale: 1}, 0)
+	}
+
+	function changeTextCenter(target){
+		var textId = target.data('id'),
+			$parent = $('.explain')
+
+		var tlText = new TimelineMax()
+			tlText
+				.to($parent.find('h2'), 0.5, {autoAlpha:0, y:"-30%" })
+				.to($parent.find('.frase-'+textId), 0.5, {autoAlpha: 1, y:"-50%"})
 	}
 
 	/*var grid = UIkit.grid($('#grid'), {
