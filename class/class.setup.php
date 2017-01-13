@@ -123,6 +123,7 @@ class Setup
 		$site_javascripts.='
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="dist/js/uikit-concat.js"></script>
+		<script src="dist/js/plugins-concat.js"></script>
 		<script type="text/javascript" src="js/plugins/jquery.backstretch.min.js"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>

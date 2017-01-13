@@ -1,3 +1,35 @@
+
+/* Slider */
+#slider{overflow: hidden;}
+#slider .slick-slider img{min-width: 100%;min-height: 100%;}
+#slider .slick-slide{position: relative;}
+button.slick-prev, button.slick-next{position: absolute;height: 42px;width: 42px;font-size: 0;}
+button.slick-prev{background: url(../../img/default/slider-seta-left.png) no-repeat;}
+button.slick-next{background: url(../../img/default/slider-seta-right.png) no-repeat;}
+#slider.arrows-side .slick-prev, #slider.arrows-side .slick-next{top: 0;bottom: 0;margin: auto 0;}
+#slider.arrows-side .slick-prev{left: 15px;}
+#slider.arrows-side .slick-next{right: 15px;}
+#slider.arrows-center .slick-prev, #slider.arrows-center .slick-next{bottom: 100px;margin: 0 auto;}
+#slider.arrows-center .slick-prev{left: 40%;}
+#slider.arrows-center .slick-next{left: 50%;}
+ul.slick-dots{position: absolute;bottom: 50px;margin: 0;}
+#slider.bullets-right ul.slick-dots{right: 15px;}
+#slider.bullets-left ul.slick-dots{left: 15px;}
+#slider.bullets-center ul.slick-dots{left: 0;right: 0;text-align: center;}
+ul.slick-dots li{display: inline-block;list-style: none;}
+ul.slick-dots li button{font-size: 0;height: 8px;width: 8px;padding: 0px;margin: 5px;background: #FFF;}
+ul.slick-dots li.slick-active button{background: #67932D;}
+#slider .slide-caption, #slider .frase { position: absolute; top: 0; bottom: 0; margin: auto; height: 0; width: 70%; left: 0; right: 0;}
+.arrow-down { position: absolute; bottom: 20px; cursor: pointer; width: 100%; text-align: center; }
+ /* posicionamento caixa de texto */
+ #slider .slide-caption { width: 70%; }
+ #slider .slide-caption.vert-top { top: 25%; }
+ #slider .slide-caption.vert-center { top: 45%; }
+ #slider .slide-caption.vert-bottom { top: 75%; }
+ #slider .slide-caption.hor-left { left: 15px; margin: 0; }
+ #slider .slide-caption.hor-right { right: 15px; margin: 0; }
+ #slider .slide-caption.hor-center { right: 0;left: 0;margin: 0 auto;}
+
 section#judice{
 	/*background: rgb(57,6,12);
 	background: -moz-linear-gradient(-45deg,  rgba(57,6,12,1) 0%, rgba(70,6,8,1) 100%);
@@ -46,7 +78,7 @@ section#judice .overlay{
 	width: 150px;
 	height: 150px;
 	border-radius: 50%;
-	box-shadow: 1px 1px 3px rgba(255,255,255,0.3);
+	/*box-shadow: 1px 1px 3px rgba(255,255,255,0.3);*/
 	text-align: center;
 	position: absolute;
 	transition: all .2s, transform .5s;
@@ -56,6 +88,7 @@ section#judice .overlay{
 	-webkit-perspective: 1000px;
 	-moz-perspective: 1000px;
 	cursor: pointer;
+	border: solid 2px #FFF;
 }
 .item .flip-container{
 	transform-style: preserve-3d;
@@ -71,7 +104,9 @@ section#judice .overlay{
 	-ms-transform: rotateY(180deg);
 	-o-transform: rotateY(180deg);
 }
-
+.item.clicked .face-item{
+	background: #333;	
+}
 .item.active .face-item{
 	background: #666;
 }

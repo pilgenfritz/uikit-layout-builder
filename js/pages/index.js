@@ -35,6 +35,7 @@ $(document).ready(function()
 	})
 
 	function fnRotationCircle(target, parent, rotationCircle){
+		$('.circle-line .item').removeClass('active')
 		target.addClass('active clicked')
 		var tlCircle = new TimelineMax()
 			tlCircle
@@ -64,7 +65,7 @@ $(document).ready(function()
 	//define a algura do header, verificando se o menu está sobre o slider
 	/*if($('#main-menu').hasClass('over_slider')) var altura = $(window).height();
 	else var altura = ($(window).height() - $('#main-menu').height());*/
-	/*initSlider();*/
+	initSlider();
 
 	//vai para a próxima seção quando clica na setinha do slider
 	/*$('.arrow-down').on('click', function(){
@@ -119,14 +120,14 @@ $(document).ready(function()
    };
 }(jQuery));
 
-function getNearestNumber(a, n){
+/*function getNearestNumber(a, n){
     if((l = a.length) < 2)
         return l - 1;
     for(var l, p = Math.abs(a[--l] - n); l--;)
         if(p < (p = Math.abs(a[l] - n)))
             break;
     return l + 1;
-}
+}*/
 
 var triggerHookPos;
 if($(window).width() >= 1024){
