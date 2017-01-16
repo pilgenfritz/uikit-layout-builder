@@ -12,9 +12,9 @@ $(document).ready(function()
 
 	//remove loader quando página carregada
 	$(window).on('load', function(){
-		/*setTimeout(function() {
-			setAlturaSlider(altura, largura);
-		}, 200);*/
+		setTimeout(function() {
+			var tween = TweenLite.to('#main-img', 1.5, {scale: 1})
+		}, 500);
 	});
 
 	$('.circle-line .item').on('click', function(){

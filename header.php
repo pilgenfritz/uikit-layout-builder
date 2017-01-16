@@ -36,10 +36,11 @@
   //more examples @ https://getbootstrap.com/examples/navbar-fixed-top/
 
   $navbar = '
-        <nav class="uk-navbar">
-          <ul class="uk-navbar-nav uk-hidden-small">
+        <nav class="uk-navbar uk-vertical-align uk-text-right">
+          <ul class="tm-navbar-nav uk-hidden-small uk-vertical-align-middle">
             ' . $Layout->gerar_menu('<li><a href="[link]" target="[target]" class="[class]">[nome]</a></li>') . '
           </ul>
+          <img src="img/logo.png" alt="" id="logo"/>
           <a href="#my-id" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
         </nav>
         <div id="my-id" class="uk-offcanvas">
@@ -63,11 +64,21 @@
   if($_GET['p'] != 'index') $header = $Layout->page_header();
   else {
     
-    $class = 'full';
+    /*$class = 'full';
     $setas = 'arrows-side';
     $bolinhas = 'bullets-left';
     
-    $header = '<header>' . $Layout->slider($class, $setas, $bolinhas) . '</header>';
+    $header = '<header>' . $Layout->slider($class, $setas, $bolinhas) . '</header>';*/
+
+    $header .= '
+      <header>
+        <div id="main-img" class="tm-section-background-image" data-source="img/main-image.png"></div>
+        <div class="overlay"></div>
+        <div class="featured-phrase"> 
+          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+        </div>
+      </header>';
+
   }
 
   Parser::__alloc("header", $header);

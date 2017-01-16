@@ -13,7 +13,7 @@ class Layout
 		while($arr = mysql_fetch_array($rr))
 		{
       if($arr['anchor'] == 'Y') $arr['page'] = '#' . $arr['page'];
-      if($arr['page'] == $_GET['p']) $class = 'active';
+      $arr['page'] == $_GET['p'] ? $class = 'active' : $class = '';
 
 			$menu .= str_replace(array('[link]','[nome]','[target]','[class]'),array($arr['page'],$arr['nome'],$arr['target'],$class),$code);
 		}

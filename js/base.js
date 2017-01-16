@@ -9,6 +9,12 @@ $(document).ready(function()
 		$('#loader').remove();
 	});
 
+	if($('.tm-section-background-image').length) {
+		$('.tm-section-background-image').each(function() {
+			$(this).backstretch($(this).data('source'));
+		});
+	}
+
 	backstretchResize()
 	
 	function backstretchResize(){
