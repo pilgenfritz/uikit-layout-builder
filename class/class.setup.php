@@ -73,8 +73,7 @@ class Setup
   $stylesheets .= '
 	<link rel="stylesheet" href="dist/css/plugins-concat.css" />
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/uikit/uikit.min.css" />
-	<link rel="stylesheet" href="css/uikit/slidenav.min.css" />
+	<link rel="stylesheet" href="dist/css/uikit-concat.css" />
 	<link rel="stylesheet" href="css/style.css" />';
   
   	if(file_exists($config['site-raiz'] . 'css/pages/' . $_GET['p'] . '.css'))

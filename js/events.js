@@ -20,4 +20,20 @@ $(document).ready(function()
 		mapa_once_open = true;
 	});
 
+	var menuFixedOnScreen = false;
+	$(window).on('scroll', function(){
+		var pos = $(this).scrollTop();
+		if(pos > 80){
+			if(!menuFixedOnScreen){
+				$('nav.uk-navbar').addClass('scroll')
+				menuFixedOnScreen = true;	
+			}
+		}else{
+			if(menuFixedOnScreen){
+				$('nav.uk-navbar').removeClass('scroll')		
+				menuFixedOnScreen = false;
+			}
+		}
+	})
+
 });

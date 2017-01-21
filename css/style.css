@@ -9,10 +9,17 @@ header{
 /* Navbar */
 nav.uk-navbar{
     height: 100px;
-    background: rgba(255, 255, 255, 0.9);
-    position: fixed;
+    background: none !important;
+    position: absolute;
     z-index: 999;
     width: 100%;
+    transition: all .25s ease;
+}
+nav.uk-navbar.scroll{
+    height: 60px;
+}
+nav.uk-navbar.scroll #logo{
+    height: 40px;
 }
 nav.uk-navbar ul li{
     display: inline-block;
@@ -24,6 +31,7 @@ nav.uk-navbar ul li:last-child{
 nav.uk-navbar ul li a{
     font-size: 18px;
     position: relative;
+    color: #FFF;
 } 
 nav.uk-navbar ul li a:before{
     content: '';
@@ -56,11 +64,16 @@ nav.uk-navbar ul li a:hover:before{
     left: 10px;
     top: 10px;
     height: 80px;
+    transition: all .25s ease;
 }
 
 .tm-text-color-1,
 .tm-text-color-1>*
 { color: #4C0606;}
+
+.uk-grid-small>*{
+    padding: 0px 10px;
+}
 
 
 /* Loader */

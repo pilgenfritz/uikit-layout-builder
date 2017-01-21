@@ -75,7 +75,9 @@
         <div id="main-img" class="tm-section-background-image" data-source="img/main-image.png"></div>
         <div class="overlay"></div>
         <div class="featured-phrase"> 
-          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+          <h2>Focados nas <b>peculariedades</b> de sua <b>empresa</b> </br>
+              Especializada em <b>você</b>
+          </h2>
         </div>
       </header>';
 

@@ -4,10 +4,10 @@ require_once('class/class.MySQLDb.php');
 
 //conection data
 
-// $db_host =		'mysql12-farm60.kinghost.net';
-// $db_username =	'agenciaready01';
-// $db_name =		'agenciaready01';
-// $db_pass =		'Qweiop12';
+/*$db_host =		'mysql12-farm60.kinghost.net';
+$db_username =	'agenciaready35';
+$db_name =		'agenciaready35';
+$db_pass =		'Qweiop12';*/
 
 $db_host =		'localhost';
 $db_username =	'root';
