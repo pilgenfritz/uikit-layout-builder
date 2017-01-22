@@ -15,25 +15,27 @@ nav.uk-navbar{
     width: 100%;
     transition: all .25s ease;
 }
-nav.uk-navbar.scroll{
+/*nav.uk-navbar.scroll{
     height: 60px;
 }
 nav.uk-navbar.scroll #logo{
     height: 40px;
-}
+}*/
 nav.uk-navbar ul li{
     display: inline-block;
     padding: 20px;
 }
 nav.uk-navbar ul li:last-child{
-    padding-right: 10px;
+    padding-right: 20px;
 }
 nav.uk-navbar ul li a{
     font-size: 18px;
     position: relative;
     color: #FFF;
+    text-transform: uppercase;
+    font-family: 'AmpleSoft';
 } 
-nav.uk-navbar ul li a:before{
+/*nav.uk-navbar ul li a:before{
     content: '';
     position: absolute;
     top: -38px;
@@ -43,16 +45,16 @@ nav.uk-navbar ul li a:before{
     background: #4C0606;
     opacity: 0;
     transition: opacity .25s ease;
-}
-nav.uk-navbar ul li a.active:before{
+}*/
+/*nav.uk-navbar ul li a.active:before{
     opacity: 1;
-}
+}*/
 nav.uk-navbar ul li a:hover{
-    color: #4C0606;
+    color: #FFFFFF;
 }
-nav.uk-navbar ul li a:hover:before{
+/*nav.uk-navbar ul li a:hover:before{
     opacity: 1;
-}
+}*/
 
 
 /* page-header */
@@ -61,8 +63,8 @@ nav.uk-navbar ul li a:hover:before{
 
 #logo{
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 20px;
+    top: 20px;
     height: 80px;
     transition: all .25s ease;
 }

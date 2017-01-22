@@ -20,7 +20,7 @@ $(document).ready(function()
 		mapa_once_open = true;
 	});
 
-	var menuFixedOnScreen = false;
+	/*var menuFixedOnScreen = false;
 	$(window).on('scroll', function(){
 		var pos = $(this).scrollTop();
 		if(pos > 80){
@@ -34,6 +34,6 @@ $(document).ready(function()
 				menuFixedOnScreen = false;
 			}
 		}
-	})
+	})*/
 
 });

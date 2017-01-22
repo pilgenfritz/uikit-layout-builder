@@ -40,7 +40,7 @@
           <ul class="tm-navbar-nav uk-hidden-small uk-vertical-align-middle">
             ' . $Layout->gerar_menu('<li><a href="[link]" target="[target]" class="[class]">[nome]</a></li>') . '
           </ul>
-          <img src="img/logo.png" alt="" id="logo"/>
+          <img src="img/logo-branco.png" alt="" id="logo"/>
           <a href="#my-id" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
         </nav>
         <div id="my-id" class="uk-offcanvas">
@@ -55,7 +55,7 @@
       <div class="spinner">
           <div class="bounce1"></div> <div class="bounce2"></div> <div class="bounce3"></div>
       </div>';
-      if($_GET['p'] == 'index') $loader .= '<img class="loader-logo" src="img/logo.png" alt="" />';
+      if($_GET['p'] == 'index') $loader .= '<img class="loader-logo" src="img/logo-branco.png" alt="" />';
     $loader .= '</div>';
 
   Parser::__alloc("loader", $loader);

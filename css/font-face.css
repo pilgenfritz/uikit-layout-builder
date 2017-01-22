@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: 'HelveticaBlack';
     src: url('fonts/HELVBL.eot');
     src: url('fonts/HELVBL.eot') format('embedded-opentype'),
@@ -105,4 +105,13 @@
          url('fonts/HelveticaNeueLTStdBdCnO.woff') format('woff'),
          url('fonts/HelveticaNeueLTStdBdCnO.ttf') format('truetype'),
          url('fonts/HelveticaNeueLTStdBdCnO.svg#HelveticaNeueLTStdBdCnO77') format('svg');
+}*/
+@font-face {
+    font-family: 'AmpleSoft';
+    src: url('fonts/Fonte1.eot');
+    src: url('fonts/Fonte1.eot') format('embedded-opentype'),
+         url('fonts/Fonte1.woff2') format('woff2'),
+         url('fonts/Fonte1.woff') format('woff'),
+         url('fonts/Fonte1.ttf') format('truetype'),
+         url('fonts/Fonte1.svg#AmpleSoft') format('svg');
 }
