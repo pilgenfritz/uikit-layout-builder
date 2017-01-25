@@ -23,7 +23,7 @@ function GoogleMapsload() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-      'callback=GoogleMapsInit';
+      'callback=GoogleMapsInit&key=AIzaSyB_y5AX__5-gftCOUh4_S85H3b1y1Y66p4';
   document.body.appendChild(script);
 }
 

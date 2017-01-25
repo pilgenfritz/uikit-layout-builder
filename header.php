@@ -37,7 +37,10 @@
 
   $navbar = '
         <nav class="uk-navbar uk-vertical-align uk-text-right">
-          <ul class="tm-navbar-nav uk-hidden-small uk-vertical-align-middle">
+          <div class="controle-processos">
+            <span>Área do Cliente</span>
+          </div>
+          <ul class="tm-navbar-nav uk-hidden-small uk-vertical-align-middle uk-margin-large-top">
             ' . $Layout->gerar_menu('<li><a href="[link]" target="[target]" class="[class]">[nome]</a></li>') . '
           </ul>
           <img src="img/logo-branco.png" alt="" id="logo"/>

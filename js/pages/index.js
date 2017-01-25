@@ -1,3 +1,4 @@
+var controller = new ScrollMagic.Controller();
 $(document).ready(function()
 {
 	var largura = $(window).width();
@@ -9,7 +10,6 @@ $(document).ready(function()
 		$("img.lazy").lazy();
 	}
 	
-
 	//remove loader quando página carregada
 	$(window).on('load', function(){
 		setTimeout(function() {
@@ -18,29 +18,37 @@ $(document).ready(function()
 	});
 
 	$('.circle-line .item').on('click', function(){
-		var $parent = $(this).parent(),
-			rotatePlus = $(this).data('rotation-plus'),
-			rotateMinus = $(this).data('rotation-minus'),
-			currentRotation = $parent.rotationDegrees();
+		var $parent1 = $('.circle-line.circle-1'),
+			$parent2 = $('.circle-line.circle-2'),
+			/*rotatePlus = $(this).data('rotation-plus'),
+			rotateMinus = $(this).data('rotation-minus'),*/
+			currentRotation1 = $parent1.rotationDegrees();
+			currentRotation2 = $parent2.rotationDegrees();
 
-			if((Math.abs(currentRotation) - rotatePlus) < (Math.abs(currentRotation) - Math.abs(rotateMinus))){
+			/*if((Math.abs(currentRotation) - rotatePlus) < (Math.abs(currentRotation) - Math.abs(rotateMinus))){
 				rotationCircle = rotateMinus;
 			}else{
 				rotationCircle = rotatePlus;
-			}
+			}*/
 
-			fnRotationCircle($(this), $parent, rotationCircle)
+			rotationCircle1 = currentRotation1 - 45;
+			rotationCircle2 = currentRotation2 - 45;
+
+			fnRotationCircle($(this), $parent1, $parent2, rotationCircle1, rotationCircle2)
 			changeTextCenter($(this))
 			
 	})
 
-	function fnRotationCircle(target, parent, rotationCircle){
+	function fnRotationCircle(target, parent1, parent2, rotationCircle1, rotationCircle2){
 		$('.circle-line .item').removeClass('active')
 		target.addClass('active clicked')
 		var tlCircle = new TimelineMax()
 			tlCircle
-				.to(parent, 1, {rotation: rotationCircle})
-				.to(parent.find('.item'), 0.1, {rotation: -rotationCircle, scale:0.5 }, 0)
+				/*.to(parent1, 1, {rotation: rotationCircle1})
+				.to(parent2, 1, {rotation: rotationCircle2},0)*/
+				/*.to(parent1.find('.item'), 0.1, {rotation: -rotationCircle1, scale:0.5 }, 0)
+				.to(parent2.find('.item'), 0.1, {rotation: -rotationCircle2, scale:0.5 }, 0)*/
+				.to('.circle-line .item', 0.5, {scale:0.5})
 				.to(target, 0.5, {scale: 1}, 0)
 	}
 
@@ -53,53 +61,6 @@ $(document).ready(function()
 				.to($parent.find('h2'), 0.5, {autoAlpha:0, y:"-30%" })
 				.to($parent.find('.frase-'+textId), 0.5, {autoAlpha: 1, y:"-50%"})
 	}
-
-	/*var grid = UIkit.grid($('#grid'), {
-		gutter : 20,
-		animation: true,
-		duration: 200,
-		controls: '#filter',
-		filter: 'filter-a, filter-b'
-	});	*/
-
-	//define a algura do header, verificando se o menu está sobre o slider
-	/*if($('#main-menu').hasClass('over_slider')) var altura = $(window).height();
-	else var altura = ($(window).height() - $('#main-menu').height());*/
-	initSlider();
-
-	//vai para a próxima seção quando clica na setinha do slider
-	/*$('.arrow-down').on('click', function(){
-		goToTarget(altura);
-	});*/
-
-	//Carousel
-	/*$('#crsl-produtos').owlCarousel({
-		responsive:{
-            0:{
-                items: 1
-            },
-            480:{
-                items: 2
-            },
-            769:{
-            	items: 3
-            }
-        },
-        nav: true,
-        margin: 10,
-		navText: [
-    		"<i class='fa fa-angle-left fa-3x nav-produtos nav-left'></i>",
-    		"<i class='fa fa-angle-right fa-3x nav-produtos nav-right'></i>"
-    	]
-	});*/
-
-	//do when window resizes
-	$(window).on('resize', function(){
-		/*newWidth = $(window).width();
-		newHeight = $(window).height();
-		
-		setAlturaSlider(newHeight, newWidth);*/
-	});
 
 });
 
@@ -120,15 +81,6 @@ $(document).ready(function()
    };
 }(jQuery));
 
-/*function getNearestNumber(a, n){
-    if((l = a.length) < 2)
-        return l - 1;
-    for(var l, p = Math.abs(a[--l] - n); l--;)
-        if(p < (p = Math.abs(a[l] - n)))
-            break;
-    return l + 1;
-}*/
-
 var triggerHookPos;
 if($(window).width() >= 1024){
 	triggerHookPos = 0.5;
@@ -136,21 +88,60 @@ if($(window).width() >= 1024){
 	triggerHookPos = 1;
 }
 
-		/*var tlSobre = new TimelineMax();
-			tlSobre.to(".section-sobre .img-sobre", 3, {autoAlpha: 1})
-				   .to(".section-sobre h1", 1, {y:0, autoAlpha: 1},0)
-				   .to(".section-sobre h3", 1, {y:0, autoAlpha: 1},0)
-				   .to(".section-sobre h2", 1, {y:0, autoAlpha: 1},0)
-				   .to(".section-sobre .rd-sobre-text", 1, {y:0, autoAlpha: 1}, "-=2")*/
-
-				   
+		
+		var tlSobre = TweenLite.to("section#about .wrap-img-sobre", 2, {x: "0px", y:"0px"})
+			/*var tlSobre = new TimelineMax();
+			tlSobre.to("section#about .wrap-img-sobre", 2, {x: "0px", y:"0px"})*/
 
 		// build scene
-		/*var sceneSobre = new ScrollMagic.Scene({
-							triggerElement: ".section-sobre",
+		var sceneSobre = new ScrollMagic.Scene({
+							triggerElement: "section#about",
+							triggerHook: 1,
+							duration: 500
+						})
+						.setTween(tlSobre)
+						.addTo(controller);
+
+
+		var tlExpertises = new TimelineMax();
+			tlExpertises.to("section#judice .circle-line", 0.5, {autoAlpha: 1})
+						.staggerTo("section#judice .circle-line .item", 1, {autoAlpha: 1}, 0.1, "-=0.2")
+						.to("section#judice .explain", 1, {autoAlpha:1}, "-=0.8")
+
+		// build scene
+		var sceneExpertises = new ScrollMagic.Scene({
+							triggerElement: "section#judice",
 							triggerHook: triggerHookPos,
 							duration: 0
 						})
-						.setTween(tlSobre)
-						.addTo(controller);*/
+						.setTween(tlExpertises)
+						.addTo(controller);
+
+
+		var tlAreas = new TimelineMax();
+			tlAreas.to("section#areas-de-atuacao h1", 0.5, {autoAlpha: 1, y:0})
+						.staggerTo("section#areas-de-atuacao ul li", 1, {autoAlpha: 1, y:"0px"}, 0.15)
+						.to("section#areas-de-atuacao .link-more", 1, {autoAlpha:1})
+
+		// build scene
+		var sceneAreas = new ScrollMagic.Scene({
+							triggerElement: "section#areas-de-atuacao",
+							triggerHook: triggerHookPos,
+							duration: 0
+						})
+						.setTween(tlAreas)
+						.addTo(controller);	
+
+		var tlDiferenciais = new TimelineMax();
+			tlDiferenciais.to("section#diferenciais h1", 0.5, {autoAlpha: 1, y:0})
+						.staggerTo("section#diferenciais ul li", 1, {autoAlpha: 1, x:"0px"}, 0.1)
+
+		// build scene
+		var sceneDiferenciais = new ScrollMagic.Scene({
+							triggerElement: "section#diferenciais",
+							triggerHook: triggerHookPos,
+							duration: 0
+						})
+						.setTween(tlDiferenciais)
+						.addTo(controller);								
  		

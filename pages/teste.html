@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gerador thumbs Facebook</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing:border-box;
+		}
+		.container{
+			width: 480px;
+			margin: 0 auto;
+			margin-top: 15px;
+			font-family: Verdana, sans-serif;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		h2{
+			width: 100%;
+			margin-top: 20px;
+		}
+		.controlsContainer{
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			margin-top: 15px;
+			height: 40px;
+			width: 100%;
+		}
+		.controlsContainer button{
+			display: block;
+			flex-grow: 1;
+			border: none;
+			cursor: pointer;
+			background-color: #d6edef;
+			text-transform: uppercase;
+			font-family: Verdana;
+			margin-left: 10px;
+			padding: 0px 7px;
+			border-radius: 4px;
+			border: 1px solid #9bc4c7;
+			-webkit-transition: 0.2s ease background-color;
+			-moz-transition: 0.2s ease background-color;
+			-ms-transition: 0.2s ease background-color;
+			-o-transition: 0.2s ease background-color;
+			transition: 0.2s ease background-color;
+			
+		}
+		.controlsContainer button:hover{
+			background-color: #9bc4c7;
+			border-color: #325052;
+		}
+		.controlsContainer input{
+			padding: 6px 7px;
+			border: 1px solid #e3e3e3;
+			font-size: 20px;
+			border-radius: 4px;
+			display: block;
+			width: 100%;
+		}
+		.controlsContainer input:nth-child(n + 1){
+			margin-left: 10px;
+		}
+
+
+		.optionsContainer{
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			margin-top: 15px;
+			width: 100%;
+		}
+		.option{
+			width: 30%;
+			margin-bottom: 10px;
+		}
+		.option input[type="radio"] {
+			display: none;
+		}
+		.option input[type="radio"] + label{
+			border: 1px solid #e3e3e3;
+			width: 100%;
+			display: block;
+			text-align: center;
+			padding: 7px 0px;
+			border-radius: 4px;
+			cursor: pointer;
+			color: #fff;
+			border: 1px solid rgba(255, 255, 255, 0.9);
+		}
+		.option input[type="radio"]:not(:checked) + label{
+			border-color: rgba(255, 255, 255, 0.3);
+		}
+		.option input[type="radio"] + label:hover{
+			box-shadow:0px 0px 3px #000;
+		}
+
+		#result {
+			margin-bottom: 40px;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div style="font-family:Impact;">&nbsp;</div>
+	<div class="container">
+		<canvas id="modelo" width="480" height="250"></canvas>
+		<div class="controlsContainer">
+			<input id="text" type="text" placeholder="Informe seu texto" />
+			<button id="draw">Mudar</button>
+			<button id="generate">Gerar imagem</button>
+		</div>
+		<h2>Selecione o tópico</h2>
+		<div class="optionsContainer">
+			<div class="option">
+				<input type="radio" name="topic" value="#1A1C34"  id="tradicional" checked/>
+				<label style="background-color:#1A1C34;" for="tradicional">Tradicional</label>
+			</div>
+			<div class="option">
+				<input type="radio" name="topic" value="#9a1c1c"  id="javascript"/>
+				<label style="background-color:#9a1c1c;" for="javascript">Javascript</label>
+			</div>
+			<div class="option">
+				<input type="radio" name="topic" value="#479a1c"  id="css"/>
+				<label style="background-color:#479a1c;" for="css">Css</label>
+			</div>
+			<div class="option">
+				<input type="radio" name="topic" value="#a62a7d"  id="html"/>
+				<label style="background-color:#a62a7d;" for="html">Html</label>
+			</div>
+			<div class="option">
+				<input type="radio" name="topic" value="#de7000"  id="canvas"/>
+				<label style="background-color:#de7000;" for="canvas">Canvas</label>
+			</div>
+			<div class="option">
+				<input type="radio" name="topic" value="#32a5a9"  id="sql"/>
+				<label style="background-color:#32a5a9;" for="sql">Sql</label>
+			</div>
+			<div class="option">
+				<input type="radio" name="topic" value="#610888"  id="etc"/>
+				<label style="background-color:#610888;" for="etc">etc</label>
+			</div>
+		</div>
+		<div class="controlsContainer">
+			<input type="text" placeholder="Personalizado" id="custom" />
+			<input type="text" placeholder="Tag" id="customTag" />
+			<button id="change">mudar</button>
+		</div>
+		<h2>Resultado</h2>
+		<div id="result">
+		</div>
+	</div>
+
+<script>
+
+/* IIFE para criar uma 'closure' e manter o escopo window protegido de variaveis */
+(function(global){
+	// use strict para receber erros de más práticas
+	'use strict';
+	// definir document no escopo da IIFE
+	let document = global.document;
+
+	// function constructor para o objeto CanvasThumb
+	// aceita dois seletores CSS como parametros
+	// o primeiro é o elemento canvas
+	// e o segundo é o elemento que a imagem será gerada
+	function CanvasThumb(canvasEl, resultEl){
+		// declaração do DOMNode do canvas no objeto
+		this.canvasEl = document.querySelectorAll(canvasEl)[0];
+		// declaração do contexto do canvas no objeto
+		this.ctx = this.canvasEl.getContext("2d");
+		// declaração do DOMNode da div que o resultado será gerado
+		this.resultEl = document.querySelectorAll(resultEl)[0];
+		
+		// declaração do objeto Image que será carregada a textura para uso do canvas
+		this.texture = new Image();
+
+		// declaraçaõ de alguns parametros iniciais de largura e altura
+		this.width = this.canvasEl.width;
+		this.height = this.canvasEl.height;
+		// declaração de espaçamento entre as letras do titulo
+		this.ltsSpacing = 7;
+
+		// chamada da iniciação do nosso objeto
+		this.load();
+	}
+
+	// declaração do prototype do objeto
+	CanvasThumb.prototype = {
+		// função load, responsavel por carregar a imagem da textura
+		load: function(){
+			// quando a imagem for carregada o método draw() será chamado
+			// e desenhara no canvas
+			this.texture.onload = this.draw.bind(this);
+			this.texture.setAttribute('crossOrigin', 'anonymous');
+			this.texture.src = "http://i.imgur.com/cd1jf3Y.png";
+		},
+		// função draw, responsavel por montar nossos desenhos no canvas
+		draw: function(){
+			this.drawBackground();
+			this.drawText();
+		},
+		// função drawBackground, responsavel por desenhar o fundo do canvas, com textura
+		drawBackground: function(){
+			// define o fillStyle da cor sólida, caso não esteja definido usa o valor padrão(cor "tradicional")
+			this.ctx.fillStyle = this.background || "#1A1C34";
+			// desenha o retangulo de cor sólida ao fundo
+			this.ctx.fillRect(0,0,this.width, this.height);
+			// desenha a textura em cima do fundo, duas vezes para ocupar o espaço todo do canvas
+			this.ctx.drawImage(this.texture, 0, 0);
+			this.ctx.drawImage(this.texture, this.texture.width, 0);
+		},
+		// função drawText, responsavel por coordenar o desenho do texto e tag
+		drawText: function(){
+			// caso não tenha texto declarado, usa o valor "TEXTO MODELO"
+			let text = this.text || "TEXTO MODELO";
+			// encadeamento das ações usando promises
+			// primeira função chamada é a responsavel por dividir o texto inteiro
+			//    frases diferentes para cada linha
+			Promise.resolve(this.splitPhrases(text))
+				// segunda função chamada é a responsavel por desenhar as frases
+				.then(this.drawPhrases.bind(this))
+				// terceira função chamada é responsavel por desenhar a tag
+				.then(this.drawTag.bind(this));
+		},
+		// função splitPhrases, responsavel por separa o texto em diferentes linhas para caber no nosso canvas
+		splitPhrases: function(text){
+			// declaração do espaçamento das letras para facilitar o acesso à variável no escopo
+			let spacing = this.ltsSpacing;
+
+			// é necessário definir o tamanho da fonte e a familia da mesma
+			//    para a medição do tamanho da frase ser correta
+			this.ctx.font = "40px/1.4 Impact, sans-serif";
+
+			// variavel ok irá informar quando o nosso texto está dividido da melhor forma possível
+			let ok = false;
+			// variavel de iterações, para manter o controle de qual frase está verificando
+			let it = 0;
+			// array que irá armazenar as frases separadas
+			let phrases = [];
+			do{
+				// variavel txt assume o primeiro valor de phrases dado a iteração
+				//	  caso não ache nenhum valor, é a primeira iteração e o array phrases está vazio
+				//    sendo assim assume o valor do texto inteiro
+				let txt = phrases[it] || text;
+
+				// verifica o tamanho do texto quando for escrito no canvas
+				let measure = this.ctx.measureText(txt);
+				// define o valor do nosso texto inteiro junto com espaçamento entre letras
+				let width = measure.width + (txt.length-1)*spacing;
+				
+				// compara o tamanho do texto completo com o container + respiro de 20px pra cada lado
+				console.log(measure.width, this.width - 40);
+				if (width > this.width - 40) {
+					// divide todas as palavras em um array
+					let splitedText = txt.split(" ");
+					// acha o meio do array
+					let middle = Math.floor(splitedText.length/2);
+					
+					// define o array da primeira metade
+					let firstPart = [];
+					for (let i = 0; i < middle; i++) {
+						firstPart.push(splitedText[i]);
+					}
+					// junta todas as palavras em uma frase
+					firstPart = firstPart.join(" ");
+
+					// define o array da segunda metade
+					let secondPart = [];
+					for (let i = middle; i < splitedText.length; i++) {
+						secondPart.push(splitedText[i]);
+					}
+					// junta todas as palavras em outra frase
+					secondPart = secondPart.join(" ");
+
+					// a posição da iteração atual no array de phrases é a primeira frase
+					phrases[it] = firstPart;
+					// verifica se ja existe alguma frase na próxima iteração
+					if (!!phrases[it+1]) {
+						// se tiver, concatena a segunda frase na frase da próxima iteração
+						phrases[it+1] = secondPart+" "+phrases[it+1];
+					}else{
+						// se não tiver, define a próxima iteração com o valor da segunda frase
+						phrases[it+1] = secondPart;
+					}
+
+					// fim do if, não adiciona um valor de iteração pois a frase na posição atual ainda pode estar grande
+					// e precisa ser verificada novamente 
+				}
+				// se o tamanho da frase desenhada for menor que o tamanho total do canvas com o respiro de 20px em cada lado
+				// 	  e o texto for diferente da frase que está na iteração atual, define a iteração atual com o valor
+				//	  do texto, e muda a variavel ok para true, assim o loop sabe que a frase terminou de ser dividida
+				else if(width < this.width - 40 && txt !== phrases[it]){
+					phrases[it] = txt;
+					ok = true;
+				}
+				// se a iteração + 1 não ultrapassar o tamanho do array, e a estiver na primeira frase
+				// soma 1 na iteração e executa o código novamente na próxima frase no proximo loop
+				else if(it+1 !== phrases.length || it === 0){
+					it++;
+				}
+				// se não acontecer nada acima, então o texto é o menor possível e está ok
+				else {
+					ok = true;
+				}
+
+			// repete todo esse processo até conseguir montar o conjunto de frases que irá caber no thumb inteiro
+			}while(!ok);
+
+			// retorna o array de phrases para ser usado pela função drawPhrases
+			return phrases;
+		},
+		// função drawPhrases, responsável por pegar as frases separadas e desenhá-las no canvas
+		drawPhrases: function(phrases){
+			// salvar o estado do nosso context
+			this.ctx.save();
+			// definição de alguns padrões, como cor da sombra, fonte e posicionamento da sombra
+			this.ctx.fillStyle = "#FFF";
+			this.ctx.shadowColor = "#000";
+			this.ctx.shadowBlur = 7;
+			this.ctx.shadowOffsetX = 1;
+			this.ctx.shadowOffsetY = 5;
+
+			// para facilitar o acesso a variável ltsSpacing
+			let spacing = this.ltsSpacing;
+
+			// no processo de desenhar, a primeira coisa é alinhar no eixo Y
+			//    para calcular isso utilizamos: altura total do canvas - quantidade de linhas * 50px
+			//    tudo dividido por 2, o tamanho 50px por linha ja conta com o line-height
+			let initialMarginY = Math.floor((this.height-50*phrases.length)/2);
+
+			// loop para desenhar cada frase individualmente
+			phrases.forEach((phrase, i) => {
+
+				// measureText() diz qual o tamanho da frase após desenhada no canvas
+				let txt = this.ctx.measureText(phrase);
+				// cada frase terá um tamanho, logo é necessário calcular o valor para centralizar em cada uma delas
+				//    nho calculo abaixo é compensado o espaçamento das letras também que é a quantidade de caracteres*espaçamento
+				let width = txt.width + (phrase.length-1)*spacing;
+				// a margem inicial em X será o tamanho total do canvas - tamanho total da frase desenhada + 20px de espaçamento
+				//    tudo dividido por 2
+				let initialMarginX = Math.floor((this.width-width+20)/2)
+
+				// a ferramenta de adicionar textos no canvas não permite 
+				//    estilizar o espaçamento das letras, dessa forma é necessário 
+				//    adicioná-las uma a uma, então separa todas as letras em um array
+				let splitedletters = phrase.split("");
+
+				// essa variável auxiliar irá guardar em que ponto de distância em x 
+				//     aconteceu o ultimo desenho(ultima letra escrita)
+				let oldWidth = 0;
+				
+				// tudo salvo para poder restaurar as alterações de transformação que irão acontecer
+				this.ctx.save();
+				// nesse momento muda a origem de transformação para a origem da frase
+				this.ctx.translate(initialMarginX, initialMarginY);
+				// após alterar a origem de transformação, o transform abaixo
+				//    irá criar o efeito de skew, que são as letras inclinadas
+				this.ctx.transform(1, 0, -0.3, 1, 0, 0);
+				
+				// loop passando por cada letra para poder escrever uma a uma 
+				splitedletters.forEach((l, i) => {
+					// text-baseline no top para condizer com os calculos de margem inicial em y
+					this.ctx.textBaseline = "top";
+					// mete o tamanho da letra quando for escrita, esse valor é necessário
+					//   para somar na distância percorrida em x
+					let measure = this.ctx.measureText(l);
+					// calculo da margem em X da letra
+					let marginX = Math.floor(oldWidth+i*spacing);
+					// letra desenhada
+					this.ctx.fillText(l, marginX, 0);
+					// tamanho da letra desenhada é somada a margem percorrida em x
+					oldWidth+= measure.width;
+				});
+				// restaura as transformações
+				this.ctx.restore();
+
+				// soma mais 50px na distancia em Y, assim a próxima frase
+				//     não será desenhada em cima da atual
+				initialMarginY += 50;
+			});
+
+			// restaura todas as modificações no processo de desenho
+			this.ctx.restore();	
+		},
+		// função drawTag, responsável por desenhar a tag no canto superior direito
+		drawTag: function(){
+			// se não tiver tag, não irá desenhar nada
+			if (!this.tag) return;
+			// adiciona o # na tag
+			let tag = "#" + this.tag;
+
+			// salva o contexto atual
+			this.ctx.save();
+			// define alguns valores de estilo da fonte
+			this.ctx.font = "16px/1.4 Verdana, sans-serif";
+			this.ctx.fillStyle = "#FFF";
+			this.ctx.shadowColor = "#000";
+
+			// mede o tamanho da tag desenhada, para poder botar a margem certa em x
+			let width = this.ctx.measureText(tag).width;
+
+			// margem em x é igual o tamanho do texto desenhado mais 20px de espaçamento da direita
+			let marginX = this.width - (width + 20);
+			
+			// aplica o efeito de skew na frase
+			this.ctx.transform(1, 0, -0.3, 1, 0, 0);
+			// desenha a frase na margem calculada, e com 25px de espaçamento em y
+			this.ctx.fillText(tag, marginX, 25);
+
+			// restaura o estado antigo do canvas
+			this.ctx.restore();
+		},
+		// função generateImage, responsável por gerar a imagem do canvas e adicioná-la na div resultado
+		generateImage: function(){
+			// cria a imagem a partir do canvas
+			let src = this.canvasEl.toDataURL("image/jpeg", 100);
+
+			// cria o elemento img que será adicionado à div resultado
+			let img = document.createElement('img');
+			img.src = src;
+
+			// adiciona a imagem na div, junto com o histórico das adicionadas anteriormente
+			this.resultEl.appendChild(img);
+		},
+		// função changeText, responsável por mudar o texto do thumb
+		changeText: function(txt){
+			this.text = txt.toUpperCase();
+			this.draw();
+		},
+		// função changeBackground, responsável por mudar a cor de fundo do thumb
+		changeBackground: function(bgHEX){
+			this.background = bgHEX;
+			this.draw();
+		},
+		// função changeTag, responável por mudar a tag da thumb
+		changeTag: function(tag){
+			this.tag = tag.toUpperCase();
+			return this;
+		}
+	}
+
+	global.canvasThumb = (canvasEl, resultEl) => new CanvasThumb(canvasEl, resultEl);
+})(window);
+
+
+window.onload = function draw(){
+	// inicializa o "plugin", passando o id do canvas, e do elemento que será gerada as imagens
+	let ct = canvasThumb("#modelo", "#result");
+
+	// referência dos elementos responsávei por alterar o texto
+	//   botão e input
+	let drawBtn = document.getElementById("draw");
+	let txtInput = document.getElementById("text");
+	// adição do evento de click no botão mudar, seguida pela chamada da função changeText()
+	drawBtn.addEventListener("click", function(){
+		ct.changeText(txtInput.value);
+	});
+
+	// referência ao botão responsável por gerar a imagem da thumb
+	let generateBtn = document.getElementById("generate");
+	// adição do evento de click no botão que gera a imagem
+	generateBtn.addEventListener("click", ct.generateImage.bind(ct));
+
+	// referência dos botões de tópico que mudam a cor e a tag do thumb
+	let colorsRadios = document.querySelectorAll("input[name='topic']");
+	// adição do evento nos botões dos tópicos
+	colorsRadios.forEach(el => {
+		el.onchange = function(e){
+			ct.changeTag(e.target.id)
+				.changeBackground(e.target.value);
+		}
+	});
+
+
+	// referência de todos os elementos responsáveis pela área de personalizados
+	let customInput = document.getElementById("custom");
+	let customTagInput = document.getElementById("customTag");
+	let customBtn = document.getElementById("change");
+	// adição do evento no botão mudar, para alterar o background caso seja uma cor válida 
+	//    e a tag sempre caso seja nula
+	customBtn.onclick = function(){
+		let hex = customInput.value;
+		let hexRegexp = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i;
+
+		let tag = customTagInput.value || " ";
+		
+		if(hexRegexp.test(hex) && hex.length > 6 || hex.length === 4){
+			// se o hex passar no teste, a cor é alterada
+			ct.changeTag(tag).changeBackground(hex);
+		}else {
+			// se não só a tag
+			ct.changeTag(tag).draw();
+		}
+	}
+}
+
+
+/* vários design patterns foram empregados propositalmente para praticá-los */
+</script>
+</body>
+</html>

@@ -128,6 +128,8 @@ class Setup
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
 		<script type="text/javascript" src="js/plugins/scrollmagic.min.js"></script>
 		<script type="text/javascript" src="js/plugins/scrollmagic-gsap.js"></script>
+		<script type="text/javascript" src="dist/js/plugins/ScrollToPlugin.min.js"></script>
+		
 		
 		
 		<!-- Plugins -->';

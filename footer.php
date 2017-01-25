@@ -83,4 +83,41 @@
   $footer .= '
   </footer>';*/
 
+
+  $footer .= '
+    <footer>
+      <div class="overlay"></div>
+      <div class="uk-container uk-container-center content uk-position-relative">
+        <div class="uk-grid uk-margin-large">
+          <div class="uk-width-1-1 uk-text-center">
+            <h1>Contato</h1>
+          </div>
+        </div>
+        <div class="uk-grid">
+          <div class="uk-width-large-1-3 uk-margin-top uk-text-center">
+            <h3>Porto Alegre / RS</h3>
+            <p>
+               Cristovão Pereira, 99 / 204 </br>
+               Passo D\'Areia </br>
+               CEP: 91030-420
+            </p>
+          </div>
+          <div class="uk-width-large-1-3 uk-margin-top uk-text-center">
+            <h3>+55 (51) 3013.5536</h3>
+            <p>cerva@cervaadvocacia.com.br</p>
+          </div>
+          <div class="uk-width-large-1-3 uk-margin-top uk-text-center">
+            <div class="btn-footer btn-email">
+              Enviar E-mail
+            </div>
+            <div class="btn-footer btn-bottom">
+              Trabalhe Conosco
+            </div>
+          </div>
+        </div>
+      </div>
+      '.$Layout->footer_map($config['google-maps-coordenadas'], '100').'
+    </footer>
+  ';
+
 Parser::__alloc("footer", $footer);
