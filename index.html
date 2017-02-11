@@ -4,79 +4,60 @@
 	<meta charset="UTF-8">
 	<title>Ready Form Generator</title>
 	<link rel="stylesheet" href="css/uikit.min.css">
+	<link rel="stylesheet" href="css/nestable.min.css">
+	<link rel="stylesheet" href="css/placeholder.min.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	
 	<div class="uk-container">
 		<div class="uk-grid uk-margin-top">
 			<div class="uk-width-1-1 uk-text-center">
-				<h1>Ready <span class="copy">&copy;</span> form generator</h1>
+				<h1>Ready <span class="copy">&copy;</span> uikit layout builder</h1>
 			</div>
 		</div>
-		<div class="uk-grid">
-			<div class="uk-width-1-2@m">
-					<div class="uk-grid uk-margin-top">
-						<div class="uk-width-1-1 uk-margin">
-							<select class="uk-select" id="tamanho">
-								<option value="Não selecionado">Selecione o tamanho da coluna</option>
-						        <option value="1-10">10%</option>
-								<option value="2-10">20%</option>
-								<option value="3-10">30%</option>
-								<option value="4-10">40%</option>
-								<option value="5-10">50%</option>
-								<option value="6-10">60%</option>
-								<option value="7-10">70%</option>
-								<option value="8-10">80%</option>
-								<option value="9-10">90%</option>
-								<option value="1-1">100%</option>
-						    </select>
-						</div>
-						<div class="uk-width-1-1 uk-margin">
-							<div class="uk-form-label">Selecione o tipo de campo</div>
-        					<div class="uk-form-controls" id="radio-tipo">
-								<label><input class="uk-radio" type="radio" name="input" value="input" checked> Input</label>
-            					<label><input class="uk-radio" type="radio" name="input" value="select"> Select</label>
-            					<label><input class="uk-radio" type="radio" name="input" value="textarea"> Textarea</label>
-            					<label><input class="uk-radio" type="radio" name="input" value="radio"> Radio</label>
-            				</div>	
-						</div>
-						<div class="uk-width-1-1 wrap-options uk-hidden">
-							<div class="wrap-options wrap-options-ch uk-hidden">
-								<input type="text" class="uk-input" name="options[]" placeholder="Digite a opção"/>
-								<input type="text" class="uk-input" name="options[]" placeholder="Digite a opção"/>
-							</div>
-							<i uk-icon="icon: plus-circle"></i>
-						</div>
-						<div class="uk-width-1-1 uk-margin">
-							<input type="text" class="uk-input" id="input_label" name="input_label" placeholder="Digite o label do elemento"/>
-						</div>
-						<!-- <div class="uk-width-1-1 uk-margin">
-							<input type="text" class="uk-input" id="input_id" name="input_id" placeholder="Digite o id do elemento"/>
-						</div> -->
-						<div class="uk-width-1-1 uk-margin">
-							<div class="uk-form-label">Campo obrigatório?</div>
-        					<div class="uk-form-controls" id="radio-required">
-								<label><input class="uk-radio" type="radio" name="required" value="true" checked> Sim</label>
-            					<label><input class="uk-radio" type="radio" name="required" value="false"> Não</label>
-            				</div>	
-						</div>
-						<div class="uk-width-1-2 uk-container-center">
-							<button>Gerar</button>
-						</div>
-					</div>    
-			</div>
-			<div class="uk-width-1-2@m">
-				<div id="wrap-result">
-					<textarea name="result" id="result" cols="30" rows="10"></textarea>
-				</div>
+	</div>	
+	<div class="uk-grid">
+		<div id="wrap-left" class="uk-width-large-1-4">
+				<div class="uk-grid uk-margin-top">
+					<div class="uk-width-1-1 uk-margin">
+						<!-- <label>Sem Container<input class="uk-checkbox" type="checkbox"></label> -->
+						<input type="text" class="uk-input" id="columns" placeholder="1-2, 1-2"/>
+						<ul class="uk-nestable uk-display-inline-block nestable-left" data-uk-nestable="{group:'my-group', maxDepth:1}">
+							<li class="uk-nestable-item">
+								<div class="uk-icon-arrows item-draggable"></div>
+            				</li>
+						</ul>
+					</div>
+					<div class="uk-width-1-2 uk-container-center">
+						<button>Gerar</button>
+					</div>
+				</div>    
+		</div>
+		<div id="wrap-right" class="uk-width-large-3-4">
+			<ul class="uk-nestable nestable-right" data-uk-nestable="{group:'my-group', maxDepth:1}">
+				<li class="uk-placeholder uk-nestable-item"></li>
+				<li class="uk-placeholder uk-nestable-item"></li>
+				<li class="uk-placeholder uk-nestable-item"></li>
+				<li class="uk-placeholder uk-nestable-item"></li>
+				<li class="uk-placeholder uk-nestable-item"></li>
+				<li class="uk-placeholder uk-nestable-item"></li>
+			</ul>	
+		</div>
+	</div>
+	<div class="uk-grid">
+		<div class="uk-width-1-1">
+			<div id="wrap-result">
+				
 			</div>
 		</div>
 	</div>
 
 
 	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
 	<script src="js/uikit.min.js"></script>
+	<script src="js/nestable.min.js"></script>
 	<script src="js/stringToSlug.js"></script>
 	<script src="js/main.js"></script>
 </body>

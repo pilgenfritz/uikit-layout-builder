@@ -1,4 +1,4 @@
-#wrap-result{
+/*#wrap-result{
 	position: fixed;
 	width: 40%;
 	right: 2%;
@@ -6,10 +6,26 @@
 #wrap-result textarea{
 	width: 100%;
 	height: 400px;
-}
+}*/
 span.copy{
 	position: relative;
 	top: -20px;
 	font-size: 20px;
 	left: -5px;
+}
+.uk-placeholder .uk-grid>div{
+	height: 20px;
+	border: solid 1px #999;
+}
+
+ul.nestable-right li .uk-grid>div{
+	border: solid 1px #999;
+	height: 20px;
+}
+
+#wrap-left{
+	background: #999;
+}
+#wrap-right{
+	background: #CCC;
 }
